@@ -73,7 +73,7 @@ col1, col2 = st.columns([1, 3])
 
 with col1:
     st.image(
-        "./profile_image.jpeg",
+        "https://raw.githubusercontent.com/Trinita21/portfolio/main/portfolio_website/profile_image.jpeg",
         use_container_width=False,
         output_format="auto",
     )
