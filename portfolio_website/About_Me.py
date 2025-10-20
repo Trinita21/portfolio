@@ -58,7 +58,6 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# st.markdown('<div class="title">Hi, I\'m Trinita Roy</div>', unsafe_allow_html=True)
 st.markdown(
     """
     <div class="title" style="text-align: center;">
@@ -93,10 +92,10 @@ with col2:
 st.markdown("### 🌐 Connect with me")
 st.markdown(f"""
 <div class="social-icons">
-    <a href="https://www.linkedin.com/in/trinita-roy/" target="_blank">🔗 LinkedIn</a>
-    <a href="https://github.com/Trinita21" target="_blank">💻 GitHub</a>
-    <a href="https://scholar.google.com/citations?user=MXdYymEAAAAJ&hl=en" target="_blank">👩🏽‍🎓 Google Scholar</a>
-    <a href="https://x.com/trinita_roy" target="_blank">🐦 Twitter</a>
+    <a href="https://www.linkedin.com/in/trinita-roy/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/Trinita21" target="_blank">GitHub</a>
+    <a href="https://scholar.google.com/citations?user=MXdYymEAAAAJ&hl=en" target="_blank">Google Scholar</a>
+    <a href="https://x.com/trinita_roy" target="_blank">Twitter</a>
 </div>
 """, unsafe_allow_html=True)
 
@@ -139,10 +138,10 @@ st.markdown("""
 </style>
 
 <div class="nav-buttons">
-    <a href="Blogs">📝 Blogs</a>
-    <a href="Projects">💼 Projects</a>
-    <a href="Work_Experience">📜 Work Experience</a>
-    <a href="Notes">🗒️ Notes</a>
+    <a href="Blogs">Blogs</a>
+    <a href="Projects">Projects</a>
+    <a href="Work_Experience">Work Experience</a>
+    <a href="Notes">Notes</a>
 </div>
 """, unsafe_allow_html=True)
 
