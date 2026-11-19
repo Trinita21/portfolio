@@ -3,7 +3,6 @@ private/
 _site/
 
 # Personal media & documents — not tracked in git
-assets/
 notes/*.pdf
 notes/*.jpg
 notes/*.jpeg
