@@ -138,10 +138,16 @@
         .then(d => {
           const p = d.publication.post; if (!p) return fail();
           document.title = `${p.title} — Trinita Roy`;
+          const setM = (sel, val) => { const el = document.querySelector(sel); if (el) el.content = val; };
+          setM('meta[property="og:title"]', `${p.title} — Trinita Roy`);
+          setM('meta[property="og:description"]', p.brief || document.querySelector('meta[name="description"]')?.content || '');
+          setM('meta[name="twitter:title"]', `${p.title} — Trinita Roy`);
+          setM('meta[name="twitter:description"]', p.brief || document.querySelector('meta[name="description"]')?.content || '');
+          if (p.coverImage?.url) { setM('meta[property="og:image"]', p.coverImage.url); setM('meta[name="twitter:image"]', p.coverImage.url); }
           art.innerHTML = `
             <a class="back mono" href="blog.html">← All writing</a>
             <h1>${esc(p.title)}</h1>
-            <div class="byline mono"><span>${fmtDate(p.publishedAt)}</span><span>${p.readTimeInMinutes} min read</span><a href="${esc(p.url)}" target="_blank" rel="noopener">Original on Hashnode ↗</a></div>
+            <div class="byline mono"><span>${fmtDate(p.publishedAt)}</span><span>${p.readTimeInMinutes} min read</span><a href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">Original on Hashnode ↗</a></div>
             ${p.coverImage?.url ? `<img class="cover" src="${esc(p.coverImage.url)}" alt="">` : ''}
             <div class="prose">${clean(p.content.html)}</div>`;
         }).catch(fail);
