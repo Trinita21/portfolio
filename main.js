@@ -17,6 +17,23 @@
   const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
   const backTop = $('#back-top'); if (backTop) backTop.addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
+  /* ── Theme toggle ── */
+  const themeBtn = $('#theme-toggle');
+  const applyTheme = t => {
+    const html = document.documentElement;
+    if (t) html.setAttribute('data-theme', t); else html.removeAttribute('data-theme');
+    const isDark = t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches);
+    if (themeBtn) { themeBtn.textContent = isDark ? '☀' : '☾'; themeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode'); }
+  };
+  applyTheme(localStorage.getItem('theme'));
+  if (themeBtn) themeBtn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+      (!document.documentElement.hasAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    const next = isDark ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+
   /* ── Scroll reveal ── */
   const rv = $$('.rv');
   if ('IntersectionObserver' in window) {

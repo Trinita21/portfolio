@@ -60,7 +60,10 @@ em.clay, .clay { color: var(--clay); }
 .nav li:last-child a { background: var(--ink); color: var(--cream); padding: 8px 14px; border-radius: 99px; }
 .nav li:last-child a::after { display: none; }
 .nav li:last-child a:hover { background: var(--clay); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
 .menu-btn { display: none; font: inherit; background: none; border: 1px solid var(--ink); border-radius: 99px; padding: 6px 14px; cursor: pointer; color: inherit; }
+.theme-btn { font: inherit; background: none; border: 1px solid var(--ink); border-radius: 50%; width: 34px; height: 34px; cursor: pointer; color: inherit; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; transition: border-color .2s, color .2s; }
+.theme-btn:hover { border-color: var(--clay); color: var(--clay); }
 
 /* ───────── Hero ───────── */
 .hero { position: relative; padding-block: clamp(36px, 7vw, 96px) clamp(40px, 6vw, 80px); }
@@ -269,7 +272,7 @@ dialog#viewer button, dialog#viewer a.chip { font: inherit; cursor: pointer; bac
 /* ───────── Responsive ───────── */
 @media (max-width: 960px) {
   .menu-btn { display: block; }
-  .nav ul { position: absolute; top: 62px; left: 0; right: 0; flex-direction: column; background: var(--paper); padding: 18px var(--gutter) 26px; gap: 14px; border-bottom: 1px solid var(--ink); display: none; }
+  .nav ul { position: absolute; top: 62px; left: 0; right: 0; flex-direction: column; background: var(--paper); padding: 18px var(--gutter) 26px; gap: 14px; border-bottom: 1px solid var(--ink); display: none; z-index: 50; }
   .nav ul.open { display: flex; }
   .nav li:last-child a { display: inline-block; }
   .hero-grid { display: block; }
@@ -309,8 +312,9 @@ dialog#viewer button, dialog#viewer a.chip { font: inherit; cursor: pointer; bac
 }
 
 /* ───────── Dark mode ───────── */
+/* Tokens — applied by OS preference (unless user chose light) or manual toggle */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     color-scheme: dark;
     --paper:      #161a16;
     --paper-2:    #1e231e;
@@ -323,12 +327,35 @@ dialog#viewer button, dialog#viewer a.chip { font: inherit; cursor: pointer; bac
     --clay-soft:  #d4855f;
     --line:       rgba(216, 224, 210, .14);
   }
-  /* Grain overlay: multiply darkens on dark bg — switch to screen */
-  body::before { mix-blend-mode: screen; opacity: .12; }
-  /* Contact section stays intentionally very dark */
-  .contact { background: #0e1210; }
-  .contact p { color: #8da48d; }
-  footer.foot { color: #7a8a7a; border-top-color: rgba(216, 224, 210, .14); }
-  /* Nav fallback for older browsers that don't support color-mix */
-  .nav { background: var(--paper); background: color-mix(in srgb, var(--paper) 88%, transparent); }
 }
+[data-theme="dark"] {
+  color-scheme: dark;
+  --paper:      #161a16;
+  --paper-2:    #1e231e;
+  --cream:      #252b25;
+  --ink:        #d8e0d2;
+  --ink-2:      #7d8c7a;
+  --sage:       #7f9475;
+  --sage-deep:  #2f3f34;
+  --clay:       #c96840;
+  --clay-soft:  #d4855f;
+  --line:       rgba(216, 224, 210, .14);
+}
+
+/* Non-token dark rules */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body::before       { mix-blend-mode: screen; opacity: .12; }
+  :root:not([data-theme="light"]) .strip             { color: #d8e0d2; }
+  :root:not([data-theme="light"]) .contact           { background: #0e1210; color: #d8e0d2; }
+  :root:not([data-theme="light"]) .contact p         { color: #8da48d; }
+  :root:not([data-theme="light"]) footer.foot        { color: #7a8a7a; border-top-color: rgba(216, 224, 210, .14); }
+  :root:not([data-theme="light"]) .nav               { background: var(--paper); background: color-mix(in srgb, var(--paper) 88%, transparent); }
+  :root:not([data-theme="light"]) .nav ul            { background: var(--paper); }
+}
+[data-theme="dark"] body::before  { mix-blend-mode: screen; opacity: .12; }
+[data-theme="dark"] .strip        { color: #d8e0d2; }
+[data-theme="dark"] .contact      { background: #0e1210; color: #d8e0d2; }
+[data-theme="dark"] .contact p    { color: #8da48d; }
+[data-theme="dark"] footer.foot   { color: #7a8a7a; border-top-color: rgba(216, 224, 210, .14); }
+[data-theme="dark"] .nav          { background: var(--paper); background: color-mix(in srgb, var(--paper) 88%, transparent); }
+[data-theme="dark"] .nav ul       { background: var(--paper); }

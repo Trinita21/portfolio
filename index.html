@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..600,0..100;1,9..144,200..600,0..100&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>(function(){var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);})()</script>
 <link rel="stylesheet" href="style.css">
 <script>document.documentElement.classList.remove('no-js')</script>
 <script type="application/ld+json">
@@ -94,15 +95,18 @@
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="index.html">Trinita <i>Roy</i></a>
-    <button class="menu-btn mono" aria-expanded="false" aria-controls="menu">Menu</button>
-    <ul id="menu">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#cases">Case studies</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="blog.html">Writing</a></li>
-      <li><a href="notes.html">Notes</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul id="menu">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#cases">Case studies</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="blog.html">Writing</a></li>
+        <li><a href="notes.html">Notes</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-btn" id="theme-toggle" aria-label="Switch to dark mode">☾</button>
+      <button class="menu-btn mono" aria-expanded="false" aria-controls="menu">Menu</button>
+    </div>
   </div>
 </header>
 
