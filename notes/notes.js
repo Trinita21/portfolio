@@ -1,6 +1,6 @@
-/* Notes manifest. Add entries with:  python3 tools/add_note.py notes/<file> "Title" --tag "Topic" --desc "One line"
-   Supported files: images (png/jpg/webp/gif/avif/svg), PDFs, or any other file (offered as a download).
-   Optional "thumb" gives a preview image for a PDF. */
+/* Notes manifest — add entries manually below.
+   Each entry: { title, date (YYYY-MM-DD), tag, file, desc, thumb (optional) }
+   Supported files: images (png/jpg/webp/gif/avif/svg), PDFs, or any file (offered as download). */
 window.NOTES = [
   {
     "title": "Linear Regression",

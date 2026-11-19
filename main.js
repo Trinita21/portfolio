@@ -15,6 +15,7 @@
     menu.addEventListener('click', e => { if (e.target.closest('a')) { menu.classList.remove('open'); btn.setAttribute('aria-expanded', false); } });
   }
   const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
+  const backTop = $('#back-top'); if (backTop) backTop.addEventListener('click', e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
   /* ── Scroll reveal ── */
   const rv = $$('.rv');
@@ -122,9 +123,14 @@
     const fail = () => { art.innerHTML = `<p class="status mono">Couldn't load this post inline.</p><a class="btn solid" href="${esc(orig)}" target="_blank" rel="noopener">Read it on Hashnode ↗</a>`; };
     const clean = html => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
-      $$('script,style,iframe,object,embed,form,link,meta', doc).forEach(n => n.remove());
-      $$('*', doc).forEach(n => [...n.attributes].forEach(a => { if (/^on/i.test(a.name) || (/^(href|src)$/i.test(a.name) && /^\s*javascript:/i.test(a.value))) n.removeAttribute(a.name); }));
-      $$('a', doc).forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
+      $$('script,style,iframe,object,embed,form,link,meta,base', doc).forEach(n => n.remove());
+      const SAFE_ATTRS = new Set(['href','src','alt','title','class','id','width','height','colspan','rowspan','target','rel','loading','decoding','aria-label','aria-hidden','start','type','value']);
+      const UNSAFE_URL = /^\s*(javascript:|data:(?!image\/(png|jpe?g|gif|webp|svg\+xml)))/i;
+      $$('*', doc).forEach(n => [...n.attributes].forEach(a => {
+        if (/^on/i.test(a.name) || !SAFE_ATTRS.has(a.name.toLowerCase())) { n.removeAttribute(a.name); return; }
+        if (/^(href|src)$/i.test(a.name) && UNSAFE_URL.test(a.value)) n.removeAttribute(a.name);
+      }));
+      $$('a', doc).forEach(a => { a.target = '_blank'; a.rel = 'noopener noreferrer'; });
       return doc.body.innerHTML;
     };
     if (!slug) fail(); else
