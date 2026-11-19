@@ -17,7 +17,7 @@
 
   --gutter: clamp(18px, 4vw, 56px);
   --maxw: 1360px;
-  color-scheme: light;
+  color-scheme: light dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -306,4 +306,29 @@ dialog#viewer button, dialog#viewer a.chip { font: inherit; cursor: pointer; bac
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .rv { opacity: 1; transform: none; }
+}
+
+/* ───────── Dark mode ───────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --paper:      #161a16;
+    --paper-2:    #1e231e;
+    --cream:      #252b25;
+    --ink:        #d8e0d2;
+    --ink-2:      #7d8c7a;
+    --sage:       #7f9475;
+    --sage-deep:  #2f3f34;
+    --clay:       #c96840;
+    --clay-soft:  #d4855f;
+    --line:       rgba(216, 224, 210, .14);
+  }
+  /* Grain overlay: multiply darkens on dark bg — switch to screen */
+  body::before { mix-blend-mode: screen; opacity: .12; }
+  /* Contact section stays intentionally very dark */
+  .contact { background: #0e1210; }
+  .contact p { color: #8da48d; }
+  footer.foot { color: #7a8a7a; border-top-color: rgba(216, 224, 210, .14); }
+  /* Nav fallback for older browsers that don't support color-mix */
+  .nav { background: var(--paper); background: color-mix(in srgb, var(--paper) 88%, transparent); }
 }
